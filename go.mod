@@ -3,6 +3,7 @@ module github.com/ZentriaMC/apply-config
 go 1.17
 
 require (
+	github.com/Masterminds/semver/v3 v3.1.1
 	github.com/magiconair/properties v1.8.6
 	github.com/tidwall/jsonc v0.3.2
 	github.com/urfave/cli/v2 v2.4.0

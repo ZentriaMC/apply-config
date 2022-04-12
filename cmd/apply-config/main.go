@@ -43,6 +43,11 @@ func main() {
 				Required: false,
 				Value:    false,
 			},
+			&cli.StringSliceFlag{
+				Name:     "data",
+				Usage:    "Template data in form --data=k=v",
+				Required: false,
+			},
 		},
 		Action: entrypoint,
 	}
@@ -64,8 +69,14 @@ func entrypoint(cctx *cli.Context) (err error) {
 		return
 	}
 
+	// Process configuration as a template
+	var templatedConfig []byte
+	if templatedConfig, err = templateConfig(cctx, configBuf); err != nil {
+		return
+	}
+
 	var cfg loader.Configuration
-	if err = json.Unmarshal(jsonc.ToJSON(configBuf), &cfg); err != nil {
+	if err = json.Unmarshal(jsonc.ToJSON(templatedConfig), &cfg); err != nil {
 		err = fmt.Errorf("unable to parse configuation: %w", err)
 		return
 	}
