@@ -11,6 +11,7 @@ import (
 	"text/template"
 
 	"github.com/Masterminds/semver/v3"
+	"github.com/tidwall/jsonc"
 	"github.com/urfave/cli/v2"
 )
 
@@ -87,7 +88,7 @@ func templateConfig(cctx *cli.Context, configBuf []byte) (buf []byte, err error)
 			return
 		}
 
-		if err = json.Unmarshal(varsBuf, &data); err != nil {
+		if err = json.Unmarshal(jsonc.ToJSON(varsBuf), &data); err != nil {
 			err = fmt.Errorf("unable to parse '%s': %w", dataFile, err)
 			return
 		}
