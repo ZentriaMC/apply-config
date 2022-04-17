@@ -1,0 +1,183 @@
+{
+    "server.properties": {
+        "allow-flight": true, // use anti-cheat for that
+        "difficulty": "hard",
+        "enable-jmx-monitoring": true,
+        "enforce-whitelist": true,
+        "gamemode": "survival",
+        "motd": "§cInternal server error",
+        "spawn-protection": 0,
+        "sync-chunk-writes": false,
+        "network-compression-threshold": -1,
+        "server-name": "{{ getvaror "minecraft.server-name" "undefined" }}",
+        // {{ if (semvercmp "minecraft.version" "ge" "1.18") }}
+        "simulation-distance": 4,
+        "view-distance": 8,
+        // {{ else }}
+        "simulation-distance": null,
+        "view-distance": 4,
+        // {{ end }}
+    },
+    "bukkit.yml": {
+        "settings.query-plugins": false,
+        
+        "settings.shutdown-message": "&7Server is restarting",
+    },
+    "spigot.yml": {
+        "settings.netty-threads": {{ max (divide .Host.NumCPU  2) 8 }},
+        "settings.log-villager-deaths": false,
+        "settings.restart-script": "./restart.sh",
+        "settings.restart-on-crash": false,
+        "settings.timeout-time": 120,
+
+        // TODO
+        "messages.whitelist": "&7You are not whitelisted",
+        "messages.unknown-command": "&cNo such command",
+        "messages.server-full": "&cServer is full",
+        "messages.outdated-client": "&7You are using outdated version! Try using &f{0}",
+        "messages.outdated-server": "&7You are using too new version! Try using &f{0}",
+        "messages.restart": "&7Server is restarting",
+    },
+    "paper.yml": {
+        "messages.kick.connection-throttle": "&cConnecting too fast! &7Try again in &f10 seconds",
+        "messages.no-permission": "&cNo permissions",
+        "settings.packet-limiter.kick-message": "&cDo not do this",
+        "timings.really-enabled": true,
+
+        "world-settings.default.fix-items-merging-through-walls": true,
+        "world-settings.default.game-mechanics.scan-for-legacy-ender-dragon": false,
+        "world-settings.default.game-mechanics.disable-end-credits": true,
+        "world-settings.default.optimize-explosions": true,
+        "world-settings.default.generator-settings.flat-bedrock": false,
+        "world-settings.default.skeleton-horse-thunder-spawn-chance": 0.05,
+
+        "world-settings.default.entity-per-chunk-save-limit.llama_spit": -1,
+        "world-settings.default.entity-per-chunk-save-limit.wither_skull": -1,
+
+        "world-settings.default.alt-item-despawn-rate.enabled": true,
+        "world-settings.default.alt-item-despawn-rate.items.ANDESITE": 500,
+        "world-settings.default.alt-item-despawn-rate.items.COBBLESTONE": 500,
+        "world-settings.default.alt-item-despawn-rate.items.DIORITE": 500,
+        "world-settings.default.alt-item-despawn-rate.items.DIRT": 500,
+        "world-settings.default.alt-item-despawn-rate.items.GRANITE": 500,
+        "world-settings.default.anti-xray.use-permission": true,
+        "world-settings.default.keep-spawn-loaded": false,
+        "world-settings.default.lootables.auto-replenish": true,
+
+        "world-settings.world.keep-spawn-loaded": true,
+        "world-settings.world.keep-spawn-loaded-range": 32,
+        "world-settings.world_the_end.keep-spawn-loaded": true,
+        "world-settings.world_the_end.keep-spawn-loaded-range": 32,
+        
+        "world-settings.world.anti-xray.enabled": true,
+        "world-settings.world.anti-xray.engine-mode": 2,
+        "world-settings.world.anti-xray.max-block-height": 64,
+        "world-settings.world.anti-xray.update-radius": 2,
+        "world-settings.world.anti-xray.lava-obscures": false,
+        "world-settings.world.anti-xray.hidden-blocks": [
+            "air",
+            "copper_ore",
+            "deepslate_copper_ore",
+            "deepslate_diamond_ore",
+            "deepslate_gold_ore",
+            "deepslate_iron_ore",
+            "deepslate_lapis_ore",
+            "deepslate_redstone_ore",
+            "diamond_ore",
+            "gold_ore",
+            "iron_ore",
+            "lapis_ore",
+            "raw_copper_block",
+            "raw_iron_block",
+            "redstone_ore",
+        ],
+        "world-settings.world.anti-xray.replacement-blocks": [
+            "chest",
+            "amethyst_block",
+            "andesite",
+            "budding_amethyst",
+            "calcite",
+            "coal_ore",
+            "deepslate_coal_ore",
+            "deepslate",
+            "diorite",
+            "dirt",
+            "emerald_ore",
+            "deepslate_emerald_ore",
+            "granite",
+            "gravel",
+            "oak_planks",
+            "smooth_basalt",
+            "stone",
+            "tuff",
+        ],
+
+        "world-settings.world_nether.anti-xray.enabled": true,
+        "world-settings.world_nether.anti-xray.engine-mode": 2,
+        "world-settings.world_nether.anti-xray.max-block-height": 128,
+        "world-settings.world_nether.anti-xray.update-radius": 2,
+        "world-settings.world_nether.anti-xray.lava-obscures": true,
+        "world-settings.world_nether.anti-xray.hidden-blocks": [
+            "air",
+            "ancient_debris",
+            "bone_block",
+            "glowstone",
+            "magma_block",
+            "nether_bricks",
+            "nether_gold_ore",
+            "nether_quartz_ore",
+            "polished_blackstone_bricks",
+        ],
+        "world-settings.world_nether.anti-xray.replacement-blocks": [
+            "basalt",
+            "blackstone",
+            "gravel",
+            "netherrack",
+            "soul_sand",
+            "soul_soil",
+        ],
+    },
+    "commands.yml": {
+        "aliases": {},
+    },
+    "wepif.yml": {
+        "permissions.groups": {},
+        "permissions.users": {},
+    },
+    "plugins/WorldEdit/config.yml": {
+        "limits.max-brush-radius": 30,
+        "limits.max-super-pickaxe-size": 30,
+        "logging.log-commands": true,
+        "files.allow-symbolic-links": true,
+        "navigation-wand.item": -1
+    },
+    "plugins/WorldGuard/config.yml": {
+        "regions.use-paper-entity-origin": true,
+        "crops.disable-creature-trampling": true,
+        "crops.disable-player-trampling": true
+    },
+    "plugins/Vault/config.yml": {
+        "update-check": false,
+    },
+    "plugins/ProtocolLib/config.yml": {
+        "global.\"auto updater\".notify": false,
+    },
+    "plugins/WDLCompanion/config.yml": {
+        "wdl.requestMessage": "No",
+    },
+    "plugins/ViaVersions/config.yml": {
+        "checkforupdates": false,
+    },
+    "plugins/HolographicDisplays/config.yml": {
+        "update-notification": false,
+    },
+    "plugins/DeluxeMenus/config.yml": {
+        "check_updates": false,
+    },
+    "plugins/Essentials/config.yml": {
+        "update-check": false,
+    },
+    "plugins/PlaceholderAPI/config.yml": {
+        "check_updates": false,
+    },
+}
